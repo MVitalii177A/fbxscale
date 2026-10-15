@@ -1,0 +1,76 @@
+# Blender extension manifest. Blender 4.2 and later read this file instead of the
+# old bl_info dictionary in __init__.py, and it is what the official extensions
+# catalogue uses to list and install the add-on.
+#
+# Validated with Blender's own reader, which is not the same thing as reading it
+# with ours:
+#
+#     blender --command extension validate .
+#
+# That command found four mistakes in earlier versions of this file that our own
+# checker had passed: a tagline over the 64-character limit (twice, because the
+# first fix was one character short), a permission description written as prose
+# when the field is capped at 64 characters, platforms written as a list of
+# tables when the schema wants a list of strings, and — the one worth remembering
+# — ``platforms`` placed after ``[permissions]``, where TOML silently files it
+# *inside* that table. Every one of these would have been a rejected upload.
+
+schema_version = "1.0.0"
+
+id = "fbxscale"
+name = "FBX Scale Report"
+version = "0.1.0"
+# 60 characters, against a limit of 64. The count is written down because it has
+# already been wrong twice: wording improves, and the limit does not move.
+tagline = "See the unit scale an FBX declares, before the engine does"
+type = "add-on"
+
+maintainer = "Quiet Tools Studio"
+license = ["SPDX:GPL-3.0-or-later"]
+
+# Blender 4.2 is the first release that reads this manifest format, so that is
+# the floor whether we like it or not. 4.2 is also the first LTS with extensions.
+blender_version_min = "4.2.0"
+
+tags = ["Mesh", "Import-Export", "Development"]
+
+# A list of strings, not ``[[platforms]]`` blocks: that is a different part of
+# the TOML spec, and Blender rejected the table form.
+#
+# This MUST stay above ``[permissions]``. TOML assigns every key that follows a
+# table header to that table, so a ``platforms`` line after ``[permissions]``
+# becomes ``permissions.platforms`` — which Blender reported as an unknown
+# permission key rather than as a misplaced table.
+platforms = ["windows-x64", "linux-x64", "macos-arm64", "macos-x64"]
+
+# The catalogue shows this text to the user before installation, so it is written
+# for a reader rather than for a schema. Allowed permission keys are files,
+# clipboard, microphone, network and camera; the value is capped at 64
+# characters.
+[permissions]
+files = "Reads FBX files; writes a report only where asked"
+
+# What goes into the built zip. Without this section, Blender's builder packs
+# **every** file in the folder — which on the first attempt included the examples
+# in ``dist/``, the whole test suite, the build scripts, and a copy of a
+# previously built zip nested inside the new one. 145 KB of files for a 31 KB
+# add-on.
+#
+# An explicit list rather than an exclusion pattern, on purpose: a list can only
+# be wrong by omission, and an omission shows up as an ImportError on the first
+# run. An exclusion pattern fails by quietly shipping something.
+[build]
+paths = [
+  "__init__.py",
+  "ui.py",
+  "core/__init__.py",
+  "core/fbx.py",
+  "core/scan.py",
+  "core/cli.py",
+  "icons/icon-16.png",
+  "icons/icon-32.png",
+  "icons/icon-64.png",
+  "icons/icon-128.png",
+  "README.md",
+  "LICENSE",
+]

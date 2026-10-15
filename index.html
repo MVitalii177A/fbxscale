@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FBX Scale Report — support and downloads</title>
+    <meta
+      name="description"
+      content="Support, downloads and source for FBX Scale Report, a Blender add-on that reads the unit scale an FBX file declares."
+    />
+    <link rel="icon" href="icons/icon-128.png" />
+    <style>
+      :root {
+        --bg: #0f172a;
+        --panel: #1b2438;
+        --line: #2b3648;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --accent: #2dd4bf;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      .wrap { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+      header { border-bottom: 1px solid var(--line); padding: 44px 0 34px; }
+      header .brand { display: flex; align-items: center; gap: 16px; }
+      header img { width: 64px; height: 64px; }
+      h1 { font-size: 30px; margin: 0; letter-spacing: -0.01em; }
+      header p { color: var(--muted); margin: 8px 0 0; font-size: 17px; }
+      main { padding: 34px 0 60px; }
+      section { margin-bottom: 38px; }
+      h2 { font-size: 19px; margin: 0 0 12px; }
+      p { margin: 0 0 14px; }
+      a { color: var(--accent); }
+      ul { margin: 0 0 14px; padding-left: 22px; }
+      li { margin-bottom: 7px; }
+      code {
+        background: #16203300;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        padding: 1px 6px;
+        font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+        font-size: 15px;
+      }
+      .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 6px; }
+      .button {
+        display: inline-block;
+        padding: 12px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+      }
+      .button.primary { background: var(--accent); color: #06231f; }
+      .button.secondary { border: 1px solid var(--line); color: var(--text); }
+      .note {
+        border-left: 3px solid var(--accent);
+        background: #16203a;
+        padding: 14px 18px;
+        border-radius: 0 8px 8px 0;
+        color: var(--muted);
+        font-size: 15px;
+        margin: 18px 0;
+      }
+      .contact {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 20px 22px;
+        background: var(--panel);
+      }
+      .contact a { font-size: 19px; font-weight: 600; }
+      table { border-collapse: collapse; width: 100%; margin: 8px 0 0; }
+      th, td { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--line); }
+      th { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+      footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: 14px; }
+      img.shot { width: 100%; border-radius: 10px; border: 1px solid var(--line); margin: 6px 0 20px; }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="wrap brand">
+        <img src="icons/icon-128.png" alt="" />
+        <div>
+          <h1>FBX Scale Report</h1>
+          <p>See what unit scale an FBX file declares, before the engine does.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section>
+        <p>
+          A Blender add-on that reports the <strong>unit scale declared inside</strong>
+          every FBX file in a folder, and names the ones that are wrong. It reads the
+          files and changes nothing.
+        </p>
+
+        <div class="buttons">
+          <a class="button primary" href="dist/fbxscale-0.1.0.zip">Download 0.1.0 (.zip)</a>
+          <a class="button secondary" href="https://github.com/MVitalii177A/fbxscale/issues">
+            Report a problem
+          </a>
+        </div>
+
+        <div class="note">
+          The download above installs directly: in Blender, <em>Preferences →
+          Add-ons → Install from Disk</em>, and pick the zip. It also works with the
+          official extension catalogue, which is where updates arrive from once the
+          listing is approved.
+        </div>
+      </section>
+
+      <section>
+        <h2>What it looks like</h2>
+        <img
+          class="shot"
+          src="dist/preview-all-clear.png"
+          alt="A report listing five FBX files, each with the unit scale it declares and a verdict of ok."
+        />
+      </section>
+
+      <section>
+        <h2>Why this exists</h2>
+        <p>
+          An FBX file does not only contain a model. It also contains a statement
+          about how big that model is — a field called <code>UnitScaleFactor</code>.
+          FBX counts in centimetres, so a factor of <code>1</code> means one unit is
+          a centimetre and <code>100</code> means one unit is a metre.
+        </p>
+        <p>
+          When files arrive from different places — some from Blender, some bought,
+          some from CAD — those factors disagree, and the models come out the wrong
+          size. The awkward part is that <strong>Blender applies the factor while
+          importing and then forgets it</strong>, so a tool that imports a file
+          cannot tell you what the file actually said. This one reads the file.
+        </p>
+      </section>
+
+      <section>
+        <h2>Support</h2>
+        <div class="contact">
+          <p style="margin-bottom: 6px">
+            Problems, questions, and anything else:
+          </p>
+          <a href="mailto:itwins19@gmail.com">itwins19@gmail.com</a>
+          <p style="margin: 12px 0 0; color: var(--muted); font-size: 15px">
+            A real person reads it. The fastest way to get a fix is to say which page
+            or file caused the trouble — most issues turn out to be about one
+            particular exporter's idea of scale.
+          </p>
+        </div>
+        <p style="margin-top: 16px">
+          Bugs and feature requests can also go to
+          <a href="https://github.com/MVitalii177A/fbxscale/issues">the issue tracker</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>Also usable without Blender</h2>
+        <p>
+          The checking logic has no Blender dependency, so it runs anywhere Python
+          3.9 or newer does. The exit code is 1 when a file has a broken scale, so it
+          can go in a pipeline.
+        </p>
+        <table>
+          <tr><th>Command</th><th>What it does</th></tr>
+          <tr><td><code>python -m core.cli &lt;folder&gt;</code></td><td>Report to the console</td></tr>
+          <tr><td><code>… --csv r.csv --html r.html</code></td><td>Also write reports</td></tr>
+          <tr><td><code>… --quiet</code></td><td>Headline only</td></tr>
+          <tr><td><code>… --no-recursive</code></td><td>Skip subfolders</td></tr>
+        </table>
+      </section>
+
+      <section>
+        <h2>What it deliberately does not do</h2>
+        <ul>
+          <li>
+            <strong>It does not fix the scale.</strong> Changing a factor is a decision
+            about intent — a file ten times off might need the file changed, or the
+            export settings, or nothing at all. It reports; you decide.
+          </li>
+          <li>
+            <strong>It does not read binary FBX.</strong> It says so, by name, rather
+            than reporting “fine” on a file it could not read.
+          </li>
+          <li>
+            <strong>It does not modify anything.</strong> Not the FBX files, not the
+            scene.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Licence</h2>
+        <p>
+          GPL-3.0-or-later. The source is in this repository; the add-on itself is
+          built from it by <code>scripts/build_zip.py</code>.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        FBX Scale Report is made by Quiet Tools Studio.
+        Support: <a href="mailto:itwins19@gmail.com">itwins19@gmail.com</a>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+; FBX 7.4.0 project file
+; ----------------------------------------------------
+
+FBXHeaderExtension:  {
+	FBXHeaderVersion: 1003
+	FBXVersion: 7400
+	Creator: "Some CAD Exporter 3.2"
+}
+GlobalSettings:  {
+	Version: 1000
+	Properties70:  {
+		P: "UpAxis", "int", "Integer", "",2
+		P: "UpAxisSign", "int", "Integer", "",1
+		P: "UnitScaleFactor", "double", "Number", "",0.01
+		P: "OriginalUnitScaleFactor", "double", "Number", "",1
+	}
+}
+Objects:  {
+	Geometry: 3000, "Geometry::Bracket", "Mesh" {
+		Vertices: *12 {
+			a: 0,0,0,250,0,0,0,120,0,250,120,0
+		}
+	}
+}
+Connections:  {
+}

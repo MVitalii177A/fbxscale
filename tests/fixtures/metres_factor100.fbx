@@ -1,0 +1,26 @@
+; FBX 7.4.0 project file
+; ----------------------------------------------------
+
+FBXHeaderExtension:  {
+	FBXHeaderVersion: 1003
+	FBXVersion: 7400
+	Creator: "Maya 2026 - FBX plugin"
+}
+GlobalSettings:  {
+	Version: 1000
+	Properties70:  {
+		P: "UpAxis", "int", "Integer", "",1
+		P: "UpAxisSign", "int", "Integer", "",1
+		P: "UnitScaleFactor", "double", "Number", "",100
+		P: "OriginalUnitScaleFactor", "double", "Number", "",100
+	}
+}
+Objects:  {
+	Geometry: 2000, "Geometry::Widget", "Mesh" {
+		Vertices: *12 {
+			a: 0,0,0,1,0,0,0,1,0,1,1,0
+		}
+	}
+}
+Connections:  {
+}

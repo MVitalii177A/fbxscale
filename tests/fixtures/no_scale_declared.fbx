@@ -1,0 +1,24 @@
+; FBX 7.4.0 project file
+; ----------------------------------------------------
+
+FBXHeaderExtension:  {
+	FBXHeaderVersion: 1003
+	FBXVersion: 7400
+	Creator: "Homemade Pipeline Tool"
+}
+GlobalSettings:  {
+	Version: 1000
+	Properties70:  {
+		P: "UpAxis", "int", "Integer", "",1
+		P: "UpAxisSign", "int", "Integer", "",1
+	}
+}
+Objects:  {
+	Geometry: 4000, "Geometry::Thing", "Mesh" {
+		Vertices: *12 {
+			a: 0,0,0,1,0,0,0,1,0,1,1,0
+		}
+	}
+}
+Connections:  {
+}
