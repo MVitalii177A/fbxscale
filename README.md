@@ -5,6 +5,32 @@ way in an engine.
 
 A Blender add-on, and a command-line tool that does not need Blender.
 
+**Your model arrived 100× too big or too small?** That is usually the file's own
+declaration rather than the import setting, and this reads it for a whole folder in
+one press. Files it cannot read are named, not skipped. It changes nothing.
+
+## Get it
+
+| | |
+|---|---|
+| **Download** | [`dist/fbxscale-0.1.1.zip`](dist/fbxscale-0.1.1.zip) — install in Blender via *Preferences → Add-ons → Install from Disk* |
+| **Blender catalogue** | `FBX Scale Report` — search for it in Blender's *Get Extensions*, once the listing is approved |
+| **Source** | this repository, GPL-3.0-or-later |
+| **Studio** | [quiettoolsstudio.com](https://quiettoolsstudio.com/) |
+| **Problems** | [issues](https://github.com/MVitalii177A/fbxscale/issues) · itwins19@gmail.com |
+
+## Answers to the questions this tool exists for
+
+Written out in full on the studio's site, because the answer is useful even to
+somebody who never installs anything:
+
+- [FBX unit scale: what the file declares](https://quiettoolsstudio.com/fbx-unit-scale/) —
+  what `UnitScaleFactor` means, and what each value (`0.01`, `1`, `2.54`, `100`) implies.
+- [FBX imports at the wrong size](https://quiettoolsstudio.com/fbx-imports-at-the-wrong-size/) —
+  the error factor is *declared ÷ assumed*; the three cases and their three fixes.
+- [FBX scale in Unity and Unreal](https://quiettoolsstudio.com/fbx-scale-unity-unreal/) —
+  what each engine converts from, and what no import setting can repair.
+
 ---
 
 ## The problem
@@ -99,7 +125,7 @@ The extensions catalogue wants a zip whose root contains `blender_manifest.toml`
 python scripts/build_zip.py
 ```
 
-That writes `dist/fbxscale-0.1.0.zip`. The script refuses to build if any test
+That writes `dist/fbxscale-0.1.1.zip`. The script refuses to build if any test
 fails, which is the only thing standing between a broken edit and a published
 version.
 

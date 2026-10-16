@@ -19,14 +19,26 @@ schema_version = "1.0.0"
 
 id = "fbxscale"
 name = "FBX Scale Report"
-version = "0.1.0"
+# 0.1.1 is 0.1.0 with one metadata field added: ``website`` below. No code changed.
+version = "0.1.1"
 # 60 characters, against a limit of 64. The count is written down because it has
 # already been wrong twice: wording improves, and the limit does not move.
+#
+# Worth revisiting in the next release, together with the name: this line is what a
+# search result shows under the title, and it contains none of the words somebody
+# with the problem types ("wrong", "too small", "Unity"). The listing description
+# can be edited on the platform without a release; this cannot.
 tagline = "See the unit scale an FBX declares, before the engine does"
 type = "add-on"
 
 maintainer = "Quiet Tools Studio"
 license = ["SPDX:GPL-3.0-or-later"]
+
+# The extension's own page. Blender shows this as the add-on's homepage, and it is the
+# only place the catalogue's rules allow a pointer to the studio's site — advertising
+# inside the Blender UI is forbidden (Terms of Service 6.1/6.3), and the listing may
+# only describe what the free edition does (6.2).
+website = "https://quiettoolsstudio.com/"
 
 # Blender 4.2 is the first release that reads this manifest format, so that is
 # the floor whether we like it or not. 4.2 is also the first LTS with extensions.
