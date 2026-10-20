@@ -14,13 +14,22 @@
 # tables when the schema wants a list of strings, and — the one worth remembering
 # — ``platforms`` placed after ``[permissions]``, where TOML silently files it
 # *inside* that table. Every one of these would have been a rejected upload.
+#
+# 0.1.2 is the version the catalogue asked for in review (20.10.2026):
+#
+#   * ``platforms`` removed — the catalogue builds the per-platform archives itself,
+#     and a hand-written list only gets in the way of that. The add-on is pure
+#     Python and has no compiled parts, so there is nothing platform-specific to
+#     declare.
+#   * ``tags`` reduced to the single category the reviewer allowed.
+#
+# Both changes are metadata only. No code changed between 0.1.1 and 0.1.2.
 
 schema_version = "1.0.0"
 
 id = "fbxscale"
 name = "FBX Scale Report"
-# 0.1.1 is 0.1.0 with one metadata field added: ``website`` below. No code changed.
-version = "0.1.1"
+version = "0.1.2"
 # 60 characters, against a limit of 64. The count is written down because it has
 # already been wrong twice: wording improves, and the limit does not move.
 #
@@ -44,16 +53,11 @@ website = "https://quiettoolsstudio.com/"
 # the floor whether we like it or not. 4.2 is also the first LTS with extensions.
 blender_version_min = "4.2.0"
 
-tags = ["Mesh", "Import-Export", "Development"]
-
-# A list of strings, not ``[[platforms]]`` blocks: that is a different part of
-# the TOML spec, and Blender rejected the table form.
-#
-# This MUST stay above ``[permissions]``. TOML assigns every key that follows a
-# table header to that table, so a ``platforms`` line after ``[permissions]``
-# becomes ``permissions.platforms`` — which Blender reported as an unknown
-# permission key rather than as a misplaced table.
-platforms = ["windows-x64", "linux-x64", "macos-arm64", "macos-x64"]
+# One category only, as the reviewer asked. The catalogue files an add-on by what it
+# is for, and this one is an import/export tool; "Mesh" and "Development" described
+# the implementation rather than the job, and a listing in three categories is harder
+# to find, not easier.
+tags = ["Import-Export"]
 
 # The catalogue shows this text to the user before installation, so it is written
 # for a reader rather than for a schema. Allowed permission keys are files,
