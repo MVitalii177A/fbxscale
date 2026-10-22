@@ -187,6 +187,32 @@ class FBXSCALE_OT_scan(Operator):
         return {"FINISHED"}
 
 
+class FBXSCALE_OT_open_console(Operator):
+    """Open Blender's system console, where the full report is printed."""
+
+    bl_idname = "fbxscale.open_console"
+    bl_label = "Open the console"
+    bl_description = (
+        "Open the console window with the full report. Same as "
+        "Window → Toggle System Console, but without looking for it"
+    )
+    bl_options = {"REGISTER"}
+
+    @classmethod
+    def poll(cls, context):
+        # На Windows консоль открывается отдельным окном; на других системах
+        # такого оператора может не быть, и кнопка просто не показывается.
+        return hasattr(bpy.ops.wm, "console_toggle")
+
+    def execute(self, context):
+        try:
+            bpy.ops.wm.console_toggle()
+        except Exception as problem:  # noqa: BLE001 - a UI action must not crash Blender
+            self.report({"ERROR"}, f"Could not open the console: {problem}")
+            return {"CANCELLED"}
+        return {"FINISHED"}
+
+
 class FBXSCALE_PT_panel(Panel):
     """The panel, in the 3D viewport's sidebar."""
 
@@ -218,7 +244,10 @@ class FBXSCALE_PT_panel(Panel):
         if settings.last_result:
             summary = layout.box()
             summary.label(text=settings.last_result, icon="INFO")
-            summary.label(text="Full report: Window → Toggle System Console")
+            if hasattr(bpy.ops.wm, "console_toggle"):
+                summary.operator(FBXSCALE_OT_open_console.bl_idname, icon="CONSOLE")
+            else:
+                summary.label(text="Full report: window → system console")
 
         layout.separator()
         box = layout.box()
@@ -234,6 +263,7 @@ class FBXSCALE_PT_panel(Panel):
 CLASSES = (
     FBXSCALE_settings,
     FBXSCALE_OT_scan,
+    FBXSCALE_OT_open_console,
     FBXSCALE_PT_panel,
 )
 
