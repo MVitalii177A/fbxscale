@@ -95,6 +95,10 @@ class FBXSCALE_settings(PropertyGroup):
         min=1,
         max=200000,
     )
+    #: Сводка последнего скана. Показывается в панели, потому что консоль Blender
+    #: (Window → Toggle System Console) новичок не находит: он нажимает Scan,
+    #: видит «see the console» и уходит, так и не узнав результата.
+    last_result: StringProperty(default="")
 
 
 class FBXSCALE_OT_scan(Operator):
@@ -168,6 +172,18 @@ class FBXSCALE_OT_scan(Operator):
         else:
             self.report({"INFO"}, f"No scale problems in {len(findings)} file(s)")
 
+        # Сводка для панели: без неё результат виден только в консоли.
+        parts = [f"{len(findings)} file(s)"]
+        if bad:
+            parts.append(f"{bad} with a broken scale")
+        if warn:
+            parts.append(f"{warn} to check")
+        if truncated:
+            parts.append(f"stopped at {settings.max_files}")
+        if not bad and not warn:
+            parts.append("all fine")
+        settings.last_result = " · ".join(parts)
+
         return {"FINISHED"}
 
 
@@ -196,6 +212,13 @@ class FBXSCALE_PT_panel(Panel):
 
         layout.separator()
         layout.operator(FBXSCALE_OT_scan.bl_idname, icon="VIEWZOOM")
+
+        # Итог последнего скана прямо в панели. Полный отчёт по файлам остаётся в
+        # консоли, и подпись говорит, где его искать.
+        if settings.last_result:
+            summary = layout.box()
+            summary.label(text=settings.last_result, icon="INFO")
+            summary.label(text="Full report: Window → Toggle System Console")
 
         layout.separator()
         box = layout.box()
