@@ -29,7 +29,7 @@ schema_version = "1.0.0"
 
 id = "fbxscale"
 name = "FBX Scale Report"
-version = "0.1.4"
+version = "0.2.0"
 # 60 characters, against a limit of 64. The count is written down because it has
 # already been wrong twice: wording improves, and the limit does not move.
 #
