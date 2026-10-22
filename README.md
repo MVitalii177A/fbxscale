@@ -13,7 +13,7 @@ one press. Files it cannot read are named, not skipped. It changes nothing.
 
 | | |
 |---|---|
-| **Download** | [`dist/fbxscale-0.1.2.zip`](dist/fbxscale-0.1.2.zip) — install in Blender via *Preferences → Add-ons → Install from Disk* |
+| **Download** | [`dist/fbxscale-0.1.1.zip`](dist/fbxscale-0.1.1.zip) — install in Blender via *Preferences → Add-ons → Install from Disk* |
 | **Blender catalogue** | `FBX Scale Report` — search for it in Blender's *Get Extensions*, once the listing is approved |
 | **Source** | this repository, GPL-3.0-or-later |
 | **Studio** | [quiettoolsstudio.com](https://quiettoolsstudio.com/) |
@@ -125,7 +125,7 @@ The extensions catalogue wants a zip whose root contains `blender_manifest.toml`
 python scripts/build_zip.py
 ```
 
-That writes `dist/fbxscale-0.1.2.zip`. The script refuses to build if any test
+That writes `dist/fbxscale-0.1.1.zip`. The script refuses to build if any test
 fails, which is the only thing standing between a broken edit and a published
 version.
 
