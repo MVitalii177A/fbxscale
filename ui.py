@@ -225,7 +225,7 @@ class FBXSCALE_PT_panel(Panel):
         box.label(text="What this does", icon="INFO")
         box.label(text="Reads the scale each file declares.")
         box.label(text="Changes nothing.")
-        box.label(text="Reports go to the console.")
+        box.label(text="The summary appears here after a scan.")
 
         if settings.show_only_problems:
             box.label(text="Set to hide files that are fine.")
